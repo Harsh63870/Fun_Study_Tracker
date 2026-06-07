@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Study Tracker</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <div class="header-top">
+        <h1>Study Tracker</h1>
+        <p class="tagline">Type commands — track college &amp; extra courses</p>
+      </div>
+      <div class="stats-grid" id="statsGrid"></div>
+    </header>
+
+    <section class="command-section">
+      <form id="commandForm" class="command-form" autocomplete="off">
+        <span class="prompt">&gt;</span>
+        <input
+          type="text"
+          id="commandInput"
+          placeholder='Try: add 3h DSA · add task: solve 20 problems · show stats'
+          spellcheck="false"
+        />
+        <button type="submit" class="btn-run">Run</button>
+      </form>
+      <div class="command-hints">
+        <button type="button" class="hint-chip" data-cmd="add 2h DSA">add 2h DSA</button>
+        <button type="button" class="hint-chip" data-cmd="summary">summary</button>
+        <button type="button" class="hint-chip" data-cmd="list pending">list pending</button>
+        <button type="button" class="hint-chip" data-cmd="show stats">show stats</button>
+        <button type="button" class="hint-chip" data-cmd="help">help</button>
+      </div>
+      <div id="commandOutput" class="command-output" aria-live="polite"></div>
+    </section>
+
+    <main class="main-grid">
+      <section class="panel panel-sessions">
+        <div class="panel-header">
+          <h2>Recent Sessions</h2>
+          <span class="badge" id="sessionCount">0</span>
+        </div>
+        <div id="sessionsList" class="sessions-list"></div>
+      </section>
+
+      <section class="panel panel-tasks">
+        <div class="panel-header">
+          <h2>Pending Tasks</h2>
+          <span class="badge" id="taskCount">0</span>
+        </div>
+        <div id="tasksList" class="tasks-list"></div>
+      </section>
+
+      <section class="panel panel-subjects">
+        <div class="panel-header">
+          <h2>Subject Breakdown</h2>
+        </div>
+        <div id="subjectChart" class="subject-chart"></div>
+        <div id="recommendation" class="recommendation"></div>
+      </section>
+
+      <section class="panel panel-trends">
+        <div class="panel-header">
+          <h2>Weekly Trend</h2>
+        </div>
+        <canvas id="weeklyChart" height="160"></canvas>
+        <div class="panel-header panel-header-sub">
+          <h3>Task Burndown (7 days)</h3>
+        </div>
+        <canvas id="burndownChart" height="120"></canvas>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <button type="button" id="exportBtn" class="btn-ghost">Export JSON</button>
+      <label class="btn-ghost import-label">
+        Import JSON
+        <input type="file" id="importInput" accept=".json" hidden />
+      </label>
+      <span class="footer-note">Data saved locally in your browser</span>
+    </footer>
+  </div>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
